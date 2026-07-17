@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prabhas – The Rebel Star</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #F0D080;
+      --deep: #0A0700;
+      --dark: #110E05;
+      --ember: #8B3A1A;
+      --ember-bright: #C4521F;
+      --text: #E8DEC8;
+      --muted: #9A9080;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--deep);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,168,76,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 20% 80%, rgba(139,58,26,0.18) 0%, transparent 60%),
+        linear-gradient(160deg, #0A0700 0%, #1A1000 40%, #0D0800 100%);
+    }
+
+    /* Animated fire particles */
+    .particles {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: rise linear infinite;
+      opacity: 0;
+    }
+    @keyframes rise {
+      0%   { transform: translateY(0) scale(1);   opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.2; }
+      100% { transform: translateY(-120vh) scale(0.3); opacity: 0; }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .hero-name {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(3.2rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 0.95;
+      position: relative;
+      background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 50%, #7A5E1A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 40px rgba(201,168,76,0.35));
+    }
+
+    .hero-tagline {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(0.75rem, 2.2vw, 1.1rem);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--ember-bright);
+      margin-top: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .hero-divider {
+      width: 120px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+    }
+
+    .hero-quote {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--text);
+      max-width: 520px;
+      line-height: 1.7;
+      font-style: italic;
+      opacity: 0.85;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .scroll-arrow {
+      width: 20px; height: 20px;
+      border-right: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      transform: rotate(45deg);
+      animation: bounce 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(6px); }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── STATS ── */
+    .stats-section {
+      background: linear-gradient(135deg, #140F00, #1C1400, #0A0700);
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 4rem 1.5rem;
+    }
+    .stats-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-item {}
+    .stat-number {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-text {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      opacity: 0.85;
+    }
+    .about-text + .about-text { margin-top: 1.2rem; }
+
+    .quick-facts {
+      background: rgba(201,168,76,0.05);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 2px;
+      padding: 1.8rem;
+    }
+    .quick-facts h3 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      font-size: 0.92rem;
+    }
+    .fact-row:last-child { border-bottom: none; }
+    .fact-key { color: var(--muted); }
+    .fact-val { color: var(--text); font-weight: 600; }
+
+    /* ── MOVIES ── */
+    .movies-section { background: #0D0A00; }
+
+    .movies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .movie-card {
+      background: linear-gradient(135deg, #1A1500, #120E00);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 2px;
+      padding: 1.5rem 1.2rem;
+      transition: border-color 0.3s, transform 0.3s;
+      cursor: default;
+    }
+    .movie-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .movie-year {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--ember-bright);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .movie-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+    .movie-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ── RECORDS ── */
+    .records-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .record-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      background: rgba(139,58,26,0.1);
+      border-left: 3px solid var(--ember-bright);
+    }
+    .record-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .record-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+    }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="particles" id="particles"></div>
+
+  <div style="position:relative; z-index:2;">
+    <p class="hero-eyebrow">The Rebel Star · Pan-India Superstar</p>
+    <h1 class="hero-name">PRABHAS</h1>
+    <p class="hero-tagline">Born to Rule the Screen</p>
+    <div class="hero-divider"></div>
+    <p class="hero-quote">"From the rivers of Andhra to the screens of the world — one name echoed through every language."</p>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Explore</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number">25+</div>
+      <div class="stat-label">Films</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">6</div>
+      <div class="stat-label">₹100Cr+ Opening Day Films</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">2015</div>
+      <div class="stat-label">Baahubali Changed Everything</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">#1</div>
+      <div class="stat-label">Pan-India Superstar</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+  <p class="section-label">The Legend</p>
+  <h2 class="section-title">About Prabhas</h2>
+  <div class="about-grid">
+    <div>
+      <p class="about-text">
+        Born Uppalapati Venkata Suryanarayana Prabhas Raju on October 23, 1979 in Chennai, 
+        Prabhas grew up in a family deeply rooted in Telugu cinema. His uncle, the legendary 
+        Krishnam Raju, inspired him to step in front of the camera.
+      </p>
+      <p class="about-text" style="margin-top:1.2rem;">
+        He debuted in 2002 with <em>Eeswar</em> and broke through with the action-romance 
+        <em>Varsham</em> in 2004. But it was S.S. Rajamouli's epic <em>Baahubali</em> saga 
+        that transformed him from a beloved regional star into India's first true pan-national 
+        superstar, beloved across every language and state.
+      </p>
+      <p class="about-text" style="margin-top:1.2rem;">
+        His journey is one of patience, dedication, and mythic ambition — spending nearly 
+        5 years on the Baahubali franchise alone, proving that the biggest rewards come to 
+        those who dare to dream on an epic scale.
+      </p>
+    </div>
+    <div class="quick-facts">
+      <h3>Quick Facts</h3>
+      <div class="fact-row"><span class="fact-key">Born</span><span class="fact-val">Oct 23, 1979</span></div>
+      <div class="fact-row"><span class="fact-key">Birthplace</span><span class="fact-val">Chennai, India</span></div>
+      <div class="fact-row"><span class="fact-key">Languages</span><span class="fact-val">Telugu · Hindi · Tamil</span></div>
+      <div class="fact-row"><span class="fact-key">Debut</span><span class="fact-val">Eeswar (2002)</span></div>
+      <div class="fact-row"><span class="fact-key">Breakthrough</span><span class="fact-val">Varsham (2004)</span></div>
+      <div class="fact-row"><span class="fact-key">Nickname</span><span class="fact-val">Rebel Star · Darling</span></div>
+      <div class="fact-row"><span class="fact-key">Award</span><span class="fact-val">Nandi Best Actor (Mirchi)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOVIES -->
+<div class="movies-section">
+  <section>
+    <p class="section-label">Filmography</p>
+    <h2 class="section-title">Iconic Films</h2>
+    <div class="movies-grid">
+      <div class="movie-card">
+        <div class="movie-year">2004</div>
+        <div class="movie-title">Varsham</div>
+        <div class="movie-note">Breakthrough action-romance hit</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-year">2005</div>
+        <div class="movie-title">Chatrapathi</div>
+        <div class="movie-note">Directed by S.S. Rajamouli</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-year">2013</div>
+        <div class="movie-title">Mirchi</div>
+        <div class="movie-note">Nandi Award – Best Actor</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-year">2015</div>
+        <div class="movie-title">Baahubali: The Beginning</div>
+        <div class="movie-note">Pan-India phenomenon begins</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-year">2017</div>
+        <div class="movie-title">Baahubali 2: The Conclusion</div>
+        <div class="movie-note">Highest-grossing Indian film at the time</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-year">2019</div>
+        <div class="movie-title">Saaho</div>
+        <div class="movie-note">Massive multi-lingual action thriller</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-year">2023</div>
+        <div class="movie-title">Salaar: Part 1</div>
+        <div class="movie-note">Ceasefire – brutal mass action</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-year">2024</div>
+        <div class="movie-title">Kalki 2898 AD</div>
+        <div class="movie-note">Sci-fi epic, top 10 all-time Indian films</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- RECORDS -->
+<section>
+  <p class="section-label">The Records</p>
+  <h2 class="section-title">Unmatched Achievements</h2>
+  <div class="records-list">
+    <div class="record-item">
+      <span class="record-icon">🏆</span>
+      <span class="record-text">First actor in Indian cinema history to have <strong>6 films with ₹100 crore+ worldwide opening days</strong></span>
+    </div>
+    <div class="record-item">
+      <span class="record-icon">🌍</span>
+      <span class="record-text">Hailed as India's <strong>First Pan-Indian Superstar</strong> — beloved across every linguistic region</span>
+    </div>
+    <div class="record-item">
+      <span class="record-icon">🗿</span>
+      <span class="record-text"><strong>First South Indian actor</strong> to have a wax sculpture at Madame Tussaud's Wax Museum</span>
+    </div>
+    <div class="record-item">
+      <span class="record-icon">💰</span>
+      <span class="record-text">One of the <strong>highest-paid actors in India</strong> across all film industries</span>
+    </div>
+    <div class="record-item">
+      <span class="record-icon">🎬</span>
+      <span class="record-text"><em>Baahubali 2: The Conclusion</em> broke the record as the <strong>highest-grossing Indian film</strong> at its time of release</span>
+    </div>
+    <div class="record-item">
+      <span class="record-icon">⭐</span>
+      <span class="record-text"><em>Kalki 2898 AD</em> ranks among the <strong>top 10 highest-grossing Indian films</strong> of all time</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Made with ❤️ by a fan &nbsp;·&nbsp; <span>PRABHAS</span> Fan Page &nbsp;·&nbsp; All glory to the Rebel Star
+</footer>
+
+<script>
+  // Fire particles
+  const container = document.getElementById('particles');
+  const colors = ['#C9A84C','#F0D080','#C4521F','#FFB347','#8B3A1A'];
+  for (let i = 0; i < 50; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 5 + 2;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*20}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${4 + Math.random()*6}s;
+      animation-delay:${Math.random()*6}s;
+      filter: blur(${Math.random()*1}px);
+    `;
+    container.appendChild(p);
+  }
+</script>
+</body>
+</html>
